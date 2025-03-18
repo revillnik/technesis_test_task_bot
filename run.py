@@ -9,10 +9,10 @@ from app.database.models import async_main
 from app.handlers import router
 
 
-async def main():  # пишем функцию для старта поллинга (регулярного опроса сервера)
+async def main():
     await async_main()
     load_dotenv()
-    bot = Bot(token=os.getenv("TOKEN"))  # создаем экземпляр класса БОТ с нашим токеном
+    bot = Bot(token=os.getenv("TOKEN"))
     dp = Dispatcher()
     dp.include_router(router)
     await dp.start_polling(bot)
