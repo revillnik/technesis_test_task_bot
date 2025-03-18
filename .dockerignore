@@ -2,3 +2,6 @@ __pycache__
 db.sqlite3
 static/
 data_for_testing/
+.gitignore
+.dockerignore
+Dockerfile
