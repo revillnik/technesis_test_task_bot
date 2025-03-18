@@ -19,8 +19,6 @@ async def main():
 
 
 if __name__ == "__main__":
-    """можно убрать логгирование,
-    т.к. оно замедляет работоспособность бота при большом потоке"""
     logging.basicConfig(level=logging.INFO)
     try:
         asyncio.run(main())
