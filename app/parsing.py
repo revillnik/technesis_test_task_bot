@@ -18,7 +18,7 @@ async def parsing_requests(session, db_dict: dict, result_dict: dict) -> dict:
                 "".join(
                     i
                     for i in soup.find("span", class_=re.compile("priceNew")).text
-                    if i in "0123456789"
+                    if re.fullmatch("\d", i)
                 )
             )
             result_dict[db_dict["title"]] += price
@@ -37,8 +37,8 @@ async def gather_data() -> dict:
         tasks = []
         result_dict = dict()
         list_db = await get_products()
-        for i in list_db:
-            task = asyncio.create_task(parsing_requests(session, i, result_dict))
+        for record in list_db:
+            task = asyncio.create_task(parsing_requests(session, record, result_dict))
             tasks.append(task)
 
         await asyncio.gather(*tasks)
